@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+        .stupid-margin {
+            margin-top: 20px;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        function foodItem(name, types){
+            return {
+                name,
+                types,
+            }
+        }
+
+        function foodItemType(name, price) {
+            return {
+                name,
+                price
+            }
+        }
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Add items
+        let container = document.getElementById("foodItems");
+
+
+        new Promise((resolve, reject) => {
+            console.log('I am starting');
+            setTimeout(function() {
+                resolve();
+            }, 3000);
+        }).then(function (){
+            console.log('I am done');
+        });
+
+            console.log('Hello!!');
+
+
+        [
+            foodItem('Donuts', [
+                foodItemType('Classic', '$1'),
+                foodItemType('Blueberry', '$1.5'),
+            ]),
+            foodItem('Cake', [
+                foodItemType('Strawberry', '$15'),
+                foodItemType('Blueberry', '$17'),
+            ]),
+        ]
+        .forEach(item => {
+            // Add on a li of the item and price
+
+            let itemContainer = `<div id="${item.name}-container">`;
+
+            // Each item will have a heder of the name
+
+            itemContainer += `<h1 class="stupid-margin">${item.name}</h1>`;
+
+            itemContainer += `<ul>`;
+
+            item.types.forEach(type => {
+                itemContainer += `<li>${type.name} - ${type.price}</li>`; 
+            });
+
+            itemContainer += `</ul>`
+
+            itemContainer += '</div>';
+
+            container.innerHTML += itemContainer;
+        });
+    });
+
+    </script>
+</html>
+
+<body>
+
+    <div class="">
+        <!--HEADER-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Menu Items
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#Donuts-container">Donuts</a>
+                            <a class="dropdown-item" href="#Cake-container">Cakes</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--MENU-->
+        <div class="container">
+            <div id="foodItems"></div>
+        </div>
+        <!--FOOTER-->
+    </div>
+
+</body>
